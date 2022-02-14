@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>mq-rocketmq-core</module>
+        <module>mq-rocketmq-consumer</module>
+        <module>mq-rocketmq-consumer-v2</module>
+    </modules>
+
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.giousa</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+
+    <groupId>com.giousa.rocketmq</groupId>
+    <artifactId>mq-rocketmq</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <!-- 统一管理jar包版本 -->
+    <properties>
+        <common-api>1.0.2-SNAPSHOT</common-api>
+    </properties>
+    <!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写version  -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 引入自己定义的api通用包-->
+            <dependency>
+                <groupId>com.giousa.common</groupId>
+                <artifactId>server-common</artifactId>
+                <version>${common-api}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.4.4</version>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--  远程地址  -->
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2078466-release-ciIFoJ/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2078466-snapshot-Kvoa7H/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
