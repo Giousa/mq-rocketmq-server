@@ -14,16 +14,18 @@ public class CommandLine {
 
         //HelpFormatter
         HelpFormatter helpFormatter = new HelpFormatter();
-        helpFormatter.printHelp("testHelpFormatter",createOptions());
+        helpFormatter.printHelp("testHelpFormatter", createOptions());
     }
 
     private static Options createOptions() {
         Options options = new Options();
 
+        //false： commandLine.getOptionValue('h') = null
         Option opt = new Option("h", "help", false, "Print help");
         opt.setRequired(false);
         options.addOption(opt);
 
+        //true： commandLine.getOptionValue('n') = 有值
         opt = new Option("n", "namesrvAddr", true,
                 "Name server address list, eg: 192.168.0.1:9876;192.168.0.2:9876");
         opt.setRequired(false);
@@ -41,8 +43,7 @@ public class CommandLine {
 
         }
         if (commandLine.hasOption('n')) {
-            String n = commandLine.getOptionValue('n');
-            System.out.println("执行了n指令:   " + n);
+            System.out.println("执行了n指令:   " + commandLine.getOptionValue('n'));
         }
     }
 }
