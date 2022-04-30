@@ -13,6 +13,7 @@ public class BaseProducerManagerTest extends BaseTest {
 
     @Test
     public void sendAsyceMsgTest() {
-        baseProducerManager.sendAsyceMsg("测试_0124");
+//        baseProducerManager.sendAsyceMsg("测试_0124");
+        baseProducerManager.sendAsyceMsg("AAA_000111");
     }
 }

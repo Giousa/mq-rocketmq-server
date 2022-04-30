@@ -36,7 +36,7 @@ public class ConsumerManager {
             consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
                 System.out.println("------------------receive msg------------------");
                 for (MessageExt msg : msgs) {
-                    log.info("consumerListener receive msg. body: {},thread: {}", new String(msg.getBody()), Thread.currentThread().getName());
+                    log.info("consumerListener receive msg. body: {},keys: {},thread: {}", new String(msg.getBody()), msg.getKeys(), Thread.currentThread().getName());
                 }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             });

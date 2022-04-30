@@ -6,6 +6,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class BaseProducerManager {
     private Integer port;
 
     public void sendAsyceMsg(String msg) {
-        System.out.println("port = "+port);
+        System.out.println("port = " + port);
         try {
             //1.创建消息生产者producer，并制定生产者组名
             DefaultMQProducer producer = new DefaultMQProducer("PRODUCERGROUP_ASYNC");
@@ -33,10 +34,12 @@ public class BaseProducerManager {
 
             //4.创建消息对象，指定主题Topic、Tag和消息体
             Message message = new Message("base_async", "async_tag_1", msg.getBytes());
-            log.info("发送数据：msg: {}, message: {}", msg, JSON.toJSONString(message));
-
+            //keys
+            message.setKeys(Lists.newArrayList("AAA", "BBB", "CCC"));
             //延迟消息
             message.setDelayTimeLevel(5);
+
+            log.info("发送数据：msg: {}, message: {}", msg, JSON.toJSONString(message));
 
             //5.发送异步消息
             producer.send(message, new SendCallback() {
