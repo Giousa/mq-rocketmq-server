@@ -8,20 +8,20 @@ public interface IDownloadStatusCallBack {
     /**
      * 开始下载
      */
-    public void startDownload();
+    void startDownload();
 
     /**
      * 停止下载
      */
-    public void stopDownload();
+    void stopDownload();
 
     /**
      * 展示下载地址
      */
-    public void showDownloadURL(String url);
+    void showDownloadURL(String url);
 
     /**
      * 展示下载进度
      */
-    public void showDownloadProgress(int progress);
+    void showDownloadProgress(int progress);
 }
