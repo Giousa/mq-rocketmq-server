@@ -1,15 +1,15 @@
 package com.giousa.rocketmq.callback;
 
-public class FileDownClient implements IDownloadStatusCallBack{
+public class CallBackImpl implements IDownloadStatusCallBack{
 
     private FileServer fileServer = null;
 
-    public FileDownClient() {
+    public CallBackImpl() {
         // TODO Auto-generated constructor stub
     }
 
     public void download(String url) {
-        fileServer = new FileServer(FileDownClient.this, url);
+        fileServer = new FileServer(CallBackImpl.this, url);
         fileServer.Run();
     }
 
